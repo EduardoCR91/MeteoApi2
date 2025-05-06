@@ -1,0 +1,125 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #e3e3e3;
+    color: #333;
+  }
+  
+  .tabs, footer {
+    display: flex;
+    justify-content: space-around;
+    background: #3c89ad;
+    padding: 10px 0;
+    color: white;
+  }
+  
+  .tabs button, footer button {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .section {
+    padding: 20px;
+  }
+  
+  .contenedor{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    padding: 1rem;
+  }
+  
+  .card {
+/*    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));*/
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: #fff;
+    border-radius: 15px;
+    padding: 1rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card img{
+    width: 250px;
+    height: 300px;
+    object-fit: contain;
+    border-radius: 15px;
+  }
+
+  .card .listaPelis{
+    display: flex;
+    list-style: none;
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+  
+  form input {
+    display: block;
+    width: 80%;
+    margin: 10px auto;
+    padding: 10px;
+  }
+  
+  form button {
+    display: block;
+    margin: 10px auto;
+    padding: 10px 20px;
+    background-color: #4b89c3;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  
+  /* Botón hamburguesa oculto en escritorio */
+  .menu-toggle {
+    display: none;
+    font-size: 24px;
+    background: none;
+    border: none;
+    color: white;
+  }
+  
+  /* Modo responsive para pantallas pequeñas */
+  @media (max-width: 768px) {
+    .menu-toggle {
+      display: block;
+      margin: 10px;
+      background: #3c89ad;
+    }
+  
+    .tabs {
+      display: none;
+      flex-direction: column;
+      background: #3c89ad;
+      padding: 10px;
+    }
+  
+    footer.tabs {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      background: #3c89ad;
+      padding: 10px 0;
+      color: white;
+    }
+  
+    .tabs.show {
+      display: flex;
+    }
+  
+    .tabs button {
+      width: 100%;
+      margin: 5px 0;
+    }
+  }

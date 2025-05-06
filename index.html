@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  
+  <!-- Menú de pestañas superior -->
+
+  <button id="filtro" onclick="filtro()">Filtro</button>
+
+  <main class="contenedor" id="api">
+
+    <!--Contenido autogenerado-->
+  </main>
+
+
+  
+
+
+<script>
+
+  
+
+    async function  listaPeliculas() {
+        let peliculas = []
+
+        const url = `https://api.disneyapi.dev/character`;
+        const res = await fetch(url)
+        const data = await res.json()
+        peliculas = data.data
+        
+
+        for (let i = 0; i < peliculas.length; i++) {
+            let contenido =`<div class='card'>
+            <h1>Personaje: ${peliculas[i].name}</h1> 
+            <img src="${peliculas[i].imageUrl}" alt="">
+            <ul class='listaPelis'>
+                <h3>Peliculas del personaje</h3>`;
+            
+            for (let j = 0; j < peliculas[i].films.length; j++) {
+                contenido +=
+                 `<li>Pelicula${j+1} ${peliculas[i].films[j]}</li>`
+            }
+            contenido += `</ul></div>`;
+            document.getElementById("api").innerHTML += contenido;
+        }
+    
+    }
+
+    /*listaPeliculas()*/
+
+    const peliculasDisney = [
+    "The Lion King",
+    "Aladdin",
+    "Beauty and the Beast",
+    "Cinderella",
+    "Mulan",
+    "Pocahontas",
+    "Snow White and the Seven Dwarfs",
+    "Sleeping Beauty",
+    "The Little Mermaid",
+    "Tangled",
+    "Frozen",
+    "Moana",
+    "Brave",
+    "Zootopia",
+    "Big Hero 6",
+    "Raya and the Last Dragon",
+    "Encanto",
+    "The Princess and the Frog",
+    "Hercules",
+    "Tarzan"
+    ];
+
+    async function filtro() {
+
+        let contenido =`
+            <select id="miLista" name="miLista">
+                 <option value="">Selecciona una película</option>`;
+        for (let i = 0; i < peliculasDisney.length; i++) {
+            contenido += `
+            <option value="${peliculasDisney[i]}">${peliculasDisney[i]}</option>`;
+        }
+        contenido += `</select>`
+        document.getElementById("api").innerHTML = contenido;
+
+        document.getElementById("miLista").addEventListener("change", async function(){
+            const peliculaElegida = this.value;
+                    
+            const respuesta = await fetch(`https://api.disneyapi.dev/character?films=${encodeURIComponent(peliculaElegida)}`)
+            const data = await respuesta.json();
+            personaje = data.data
+            console.log(peliculaElegida)
+            document.getElementById("api").innerHTML = "";
+
+            let contenido = `
+            <div class='card'>
+                <h1>Personaje: ${personaje[0].name}</h1> 
+                <img src="${personaje[0].imageUrl}" alt="">
+                <ul class='listaPelis'>
+                <h3>Peliculas del personaje</h3>`;
+                contenido += `</ul></div>`;
+                document.getElementById("api").innerHTML += contenido;
+                
+
+        })
+        
+    }
+
+    
+
+</script>
+
+
+  
+
+</body>
+</html>
